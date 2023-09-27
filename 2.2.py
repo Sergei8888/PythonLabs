@@ -1,24 +1,20 @@
 while True:
-    try:
-        n = int(input("Введите число n: "))
+    while True:
+        try:
+            n = int(input("Введите чило n:"))
+            result = []
+            for i in range(n):
+                row = []
+                for j in range(i + 1):
+                    row.append(j + 1)
 
-        maxRowLength = 0
-        for i in range(n):
-            maxRowLength += len(str(i + 1))
-        maxRowLength *= 2
-        maxRowLength -= 1
-
-        for i in range(n):
-            row = ''
-            for j in range(i, 0, -1):
-                row += str(j + 1)
-            for j in range(i + 1):
-                row += str(j + 1)
-            spacesNeeded = maxRowLength - len(row)
-            spacedExpected = maxRowLength - (len(row) - n) * 2
-            maxRowLength - len(row)
-            print(' ' * int((spacesNeeded / 2)) + row + ' ' * int((spacesNeeded / 2)))
-
-        exit()
-    except Exception as e:
-        print("Ошибка:", e)
+                s = ''.join([str(k) for k in row[:-1:]]) + ''.join([str(k) for k in row[::-1]])
+                result.append(s)
+            max_result_lenght = len(result[-1])
+            for i, s in enumerate(result):
+                s = " " * int((max_result_lenght - len(s)) / 2) + s + " " * int((max_result_lenght - len(s)) / 2)
+                rows = (i + 2) // 10
+                print(s + rows * '\n')
+            break
+        except Exception as ex:
+            print(f"Ошибка {ex}")
